@@ -8,7 +8,7 @@
 
 <h1>Edit Comic: {{$comic->name}}</h1>
 
-<form method="POST" action="{{Route('comics.update', ['comic' => $comic])}}">
+<form method="POST" action="{{Route('comics.update', ['comic' => $comic])}}" enctype="multipart/form-data">
     @method('PUT')
     <div class="row">
         <div class="col-md-8">
@@ -91,11 +91,13 @@
                     <label>Comic Cover:</label>
                     
                     <div class="form-group">
-                            <img src="{{$comic->photo->thumbnail}}">
+                            @if($comic->photo_id)<img src=" {{url($comic->photo->thumbnail) }}">
+                            @else No Cover
+                            @endif
                             <div class="mt-2">
-                            <input type="file" name="image">
+                            <input type="file" name="photo">
                             </div>
-                            <div>{{ $errors->first('images')}}</div>
+                            <div>{{ $errors->first('photo_id')}}</div>
                     </div>
 
 
@@ -115,35 +117,35 @@
                             </div>
                         </div>
                         </div>
-                        
-                    
-                    
-            
-            
-                            
-                        
-                        
+     
             </div>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="mr-2">
              @csrf
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">SUBMIT</button>
-                <a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
+            </div>
+            </form>
+        </div>
+        <div class="mr-2">
+            <a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
+        </div>
+        <div  class="mr-2">
             <form action="{{route('comics.destroy', $comic->id)}}" method="POST">
                     @method('DELETE')
                     @csrf
                     
                     <button type="submit" class="btn btn-danger delete-image">Delete Comic</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
-</form>
+
         
     
 

@@ -16,7 +16,9 @@
 Auth::routes();
 
 Route::get('/', 'Front@index')->name('home');
-
+Route::get('/shop', 'Front@shop')->name('shop');
+Route::get('/contact', 'Front@contact')->name('contact');
+Route::get('/about', 'Front@about')->name('about');
 Auth::routes();
  Route::get('/admin','AdminController@index')->name('admin');
  

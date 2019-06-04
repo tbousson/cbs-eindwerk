@@ -9,6 +9,6 @@ class Photo extends Model
     
     protected $primaryKey = 'id';
 	protected $table = 'photos';
-    protected $fillable=['url','thumbnail'];
+    protected $fillable=['name','url','thumbnail'];
     
 }

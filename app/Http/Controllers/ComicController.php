@@ -68,8 +68,10 @@ class ComicController extends Controller
             $file->storeAs('',$name,'photos');
             
             $image = "/storage/photos/".$name;
+
             $thumbnail = Image::make($file)->resize(null, 300, function ($constraint) {
-                $constraint->aspectRatio();})->save();
+                $constraint->aspectRatio();})->stream();
+                
             $tname = 'thumbnail_'.$name;
             $tpath= '/storage/thumbnails/'.$tname;
             Storage::disk('thumbnails')->put($tname,$thumbnail);
@@ -128,6 +130,7 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        
         $this->validate($request, array(
             'title' => "required|min:10|unique:comics,title,$comic->id",
             'description'=>'required',
@@ -140,7 +143,59 @@ class ComicController extends Controller
             
        
         ));
-        $comic->update($request->all());
+        
+        $input = $request->all();
+        if($comic->photo_id === 0){
+            if($file = $request->file('photo')){
+                $name = time() . $file->getClientOriginalName();//samenstelling bestandsnaam
+                $file->storeAs('',$name,'photos');
+                $image = "/storage/photos/".$name;
+                
+                $thumbnail = Image::make($file)->resize(null, 300, function ($constraint) {
+                    $constraint->aspectRatio();})->stream();
+                    
+                $tname = 'thumbnail_'.$name;
+                $tpath= '/storage/thumbnails/'.$tname;
+                Storage::disk('thumbnails')->put($tname,$thumbnail);
+                $photo= Photo::create([
+                    'name' => $name,
+                    'url' => $image,
+                    'thumbnail' => $tpath
+                ])->id;
+                
+                $input['photo_id'] = $photo;
+        }
+    }   
+        elseif($file = $request->file('photo')){
+
+
+
+
+            $name = time() . $file->getClientOriginalName();//samenstelling bestandsnaam
+            
+            $file->storeAs('',$name,'photos');
+            
+            $image = "storage/photos/".$name;
+            
+            $thumbnail = Image::make($file)->resize(null, 300, function ($constraint) {
+                $constraint->aspectRatio();})->stream();
+                $tname = 'thumbnail_'.$name;
+            $tpath= "storage/thumbnails/".$tname;
+            Storage::disk('thumbnails')->put($tname,$thumbnail);
+            $photo = Photo::findOrFail($comic->photo_id);
+            $oldphoto = $photo->name;
+            $oldthumbnail = 'thumbnail_'.$oldphoto;
+            $photo->update([
+                'name' => $name,
+                'url' => $image,
+                'thumbnail' => $tpath
+            ]);
+            Storage::disk('photos')->delete($oldphoto);
+            Storage::disk('thumbnails')->delete($oldthumbnail);
+            $input['photo_id'] = $photo->id;
+            
+        }
+        $comic->update($input);
         if(isset($request->genres)){
             $comic->genres()->sync($request->genres);
         }
