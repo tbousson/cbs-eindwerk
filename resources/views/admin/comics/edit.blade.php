@@ -6,13 +6,13 @@
 
 @section('content')
 
-<h1>Edit Comic: {{$comic->name}}</h1>
-
+<h1>Edit Comic: {{$comic->title}}</h1>
+<h3>Comic Info</h3>
 <form method="POST" action="{{Route('comics.update', ['comic' => $comic])}}" enctype="multipart/form-data">
     @method('PUT')
     <div class="row">
         <div class="col-md-8">
-            <h3>Comic Info</h3>
+            
             <label for="title">Title:</label>
             <div class="form-group">
                 <input type="text" name="title" value="{{ old('title') ?? $comic->title}}" class="form-control"> 
@@ -50,14 +50,14 @@
 
 
             <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                         <label for="publishyear">Publish Year:</label>
                         <div class="form-group">
                             <input type="text" name="publishyear" value="{{ old('publishyear') ?? $comic->publishyear}}" class="form-control"> 
                             <div>{{ $errors->first('publishyear')}}</div>
                         </div>
                 </div>
-                <div class="col">
+                <div class="col-md-6">
                         <label for="publisher">Publisher:</label>
                         <div class="form-group">
                             <select name="publisher_id" id="publisher_id" class="form-control">
@@ -70,8 +70,8 @@
             </div>
            
            
-                
-               <div>
+              <div class="row">  
+               <div class="col-md-12">
                 <label for="genres">Genres:</label>
                 <div class="form-group">
                         <select class="js-select2-genres form-control" name="genres[]" multiple="multiple">
@@ -83,8 +83,10 @@
                           </select>
                     </div>
                 </div>
+            </div>
                                
         </div>
+        <div class="row">
         <div class="col">
             <div>
                 
@@ -102,14 +104,14 @@
 
 
                     <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-md-3">
                         <label for="price">Price:</label>
                         <div class="form-group">
                                 <input type="text" name="price" value="{{ old('price') ?? $comic->price}}" class="form-control"> 
                                 <div>{{ $errors->first('price')}}</div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-md-3">
                             <label for="stock">Stock:</label>
                             <div class="form-group">
                                 <input type="text" name="stock" value="{{ old('stock') ?? $comic->stock}}" class="form-control"> 
@@ -121,7 +123,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
     <div class="row">
         <div class="mr-2">

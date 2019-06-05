@@ -17,6 +17,11 @@ Auth::routes();
 
 Route::get('/', 'Front@index')->name('home');
 Route::get('/shop', 'Front@shop')->name('shop');
+Route::get('/comic/{id}','Front@comic')->name('comic');
+Route::get('/author/{id}','Front@author')->name('author');
+Route::get('/serie/{id}','Front@serie')->name('serie');
+Route::get('/publisher/{id}','Front@publisher')->name('publisher');
+Route::get('/genre/{id}','Front@genre')->name('genre');
 Route::get('/contact', 'Front@contact')->name('contact');
 Route::get('/about', 'Front@about')->name('about');
 Auth::routes();

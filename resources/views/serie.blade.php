@@ -1,10 +1,9 @@
 @extends('layouts.front')
-
 @section('content')
 
 
 	<!-- Title Page -->
-	@include('shared.titlepage', ['title' => 'Comic Book Shop','subtitle' => 'Find All The Best Comics Here!', 'background' => 'images/comic-1.jpg'])
+	@include('shared.titlepage', ['title' => "$serie->name",'subtitle' => '', 'background' => 'images/comic-1.jpg'])
 
 
 	<!-- Content page -->
@@ -277,7 +276,7 @@
 
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="{{asset("vendor/jquery/jquery-3.2.1.min.js")}}"></script>
+<script type="text/javascript" src="{{asset("vendor/jquery/jquery-3.2.1.min.js")}}"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="{{asset("vendor/animsition/js/animsition.min.js")}}"></script>
 <!--===============================================================================================-->

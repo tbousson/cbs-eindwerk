@@ -7,8 +7,23 @@ use App\Author;
 use App\Comic;
 use App\Serie;
 use App\Publisher;
+use App\Genre;
 class Front extends Controller
-{
+{   
+    var $comics;
+    var $authors;
+    var $series;
+    var $publishers;
+    var $genres;
+
+    public function __construct(){
+        $this->comics = Comic::all();
+        $this->authors = Author::orderBy('name','asc')->get();
+        $this->series = Serie::orderBy('name','asc')->get();
+        $this->publishers = Publisher::orderBy('name','asc')->get();
+        $this->genres = Genre::all();
+        
+    }
     public function index()
     {
         $authors = Author::all();
@@ -20,7 +35,7 @@ class Front extends Controller
         $authors = Author::orderBy('name','asc')->get();
         $series = Serie::orderBy('name','asc')->get();
         $publishers = Publisher::orderBy('name','asc')->get();
-        $comics = Comic::orderBy('id','desc')->get();
+        $comics = Comic::inRandomOrder()->get();
         return view('shop', compact('authors','comics','series','publishers'));
     }
     public function contact()
@@ -33,5 +48,48 @@ class Front extends Controller
        
         return view('about');
     }
-    
+    public function comic($id){
+        $comic = Comic::findOrFail($id);
+        return view('comic',array('comic' => $comic,'title'=>$comic->name,
+            'description'=>$comic->description, 'page'=>'comics', 'publishername' => $comic->publisher->name,
+            'authors'=>$this->authors,'series' => $this->series, 'genres' => $this->genres, 'publishers' => $this->publishers, 'comics'=>$this->comics ));
+    }
+    public function author($id){
+        $genres = genre::orderBy('name','asc')->get();
+        $authors = Author::orderBy('name','asc')->get();
+        $series = Serie::orderBy('name','asc')->get();
+        $publishers = Publisher::orderBy('name','asc')->get();
+        $author = Author::findOrFail($id);
+        $comics = Comic::where('author_id', '=', $id)->get();
+        return view('author', compact('comics', 'author', 'authors', 'series', 'publishers', 'genres'));
+    }
+    public function serie($id){
+        $genres = genre::orderBy('name','asc')->get();
+        $authors = Author::orderBy('name','asc')->get();
+        $series = Serie::orderBy('name','asc')->get();
+        $publishers = Publisher::orderBy('name','asc')->get();
+        $serie = Serie::findOrFail($id);
+        $comics = Comic::where('serie_id', '=', $id)->get();
+        return view('serie', compact('comics', 'serie', 'authors', 'series', 'publishers', 'genres'));
+    }
+    public function publisher($id){
+        $genres = genre::orderBy('name','asc')->get();
+        $authors = Author::orderBy('name','asc')->get();
+        $series = Serie::orderBy('name','asc')->get();
+        $publishers = Publisher::orderBy('name','asc')->get();
+        $publisher = Publisher::findOrFail($id);
+        $comics = Comic::where('publisher_id', '=', $id)->get();
+        return view('publisher', compact('comics', 'publisher', 'authors', 'series', 'publishers', 'genres'));
+    }
+    public function genre($id){
+        $genres = genre::orderBy('name','asc')->get();
+        $authors = Author::orderBy('name','asc')->get();
+        $series = Serie::orderBy('name','asc')->get();
+        $publishers = Publisher::orderBy('name','asc')->get();
+        $genre = genre::findOrFail($id);
+        $comics = Comic::whereHas('genres', function($q) use ($id) {
+            $q->where('id', $id);
+         })->get();
+        return view('genre', compact('comics', 'genre', 'authors', 'series', 'publishers', 'genres'));
+    }
 }

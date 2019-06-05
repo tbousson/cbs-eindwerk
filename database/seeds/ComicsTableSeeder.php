@@ -126,7 +126,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'author_id' => 2,
                 'serie_id' => 3,
                 'publisher_id' => 3,
-                'photo_id' => 1,
+                'photo_id' => 0,
                 'publishyear' => 1997,
                 'price' => 15,
                 'stock' => 5,

@@ -25,6 +25,6 @@ class Comic extends Model
         return $this->hasMany('App\Order');
     }
     public function photo(){
-        return $this->belongsTo('App\Photo');
+        return $this->belongsTo('App\Photo')->withDefault(['url' => '/images/370x568.png']);
     }
 }

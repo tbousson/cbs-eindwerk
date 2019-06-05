@@ -1,3 +1,47 @@
 .product-display-text {
     width: 250px;
 }
+.l-text2 {
+    color: #00796b;
+}
+.m-text13 {
+    color: #00796b;
+}
+.comic-title-bg {
+    background-color: rgba(255, 255, 255, 0.65);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.color0-hov:hover {
+    color: #00796b;
+}
+.bg0 {
+    background-color: #70c9c4;
+}
+.eff2:active {
+    background-color: #70c9c4;
+}
+.hov1:hover {
+    background-color: #70c9c4;
+}
+.color0 {
+    color: #00796b;
+}
+.m-text8 {
+    font-family: Montserrat-Regular;
+    font-size: 16px;
+    color: #00796b;
+}
+a:hover {
+    color: #00796b;
+}
+.ralign {
+    text-align: right;
+}
+
+.price {
+    color: #00796b;
+}
