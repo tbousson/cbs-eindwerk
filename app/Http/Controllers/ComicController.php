@@ -50,7 +50,7 @@ class ComicController extends Controller
     {
        
         $this->validate($request, array(
-            'title' => "required|min:10|unique:comics,title",
+            'title' => "required|min:5|unique:comics,title",
             'description'=>'required',
             'price'=>'required|numeric',
             'author_id'=>'required',
@@ -132,7 +132,7 @@ class ComicController extends Controller
     {
         
         $this->validate($request, array(
-            'title' => "required|min:10|unique:comics,title,$comic->id",
+            'title' => "required|min:5|unique:comics,title,$comic->id",
             'description'=>'required',
             'price'=>'required|numeric',
             'author_id'=>'required',

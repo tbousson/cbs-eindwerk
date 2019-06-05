@@ -3,12 +3,12 @@
 
 @section('titlebar')
 	<!-- Title Page -->
-	@include('shared.titlepage', ['title' => "$publisher->name",'subtitle' => 'Publisher', 'background' => 'images/comic-1.jpg'])
+	@include('shared.titlepage', ['title' => "All Comics",'subtitle' => '', 'background' => 'images/comic-1.jpg'])
 @endsection
-
     @section('content')
 	<!-- Content page -->
 	
+
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
 					<!--  -->
 					<div class="flex-sb-m flex-w p-b-35">

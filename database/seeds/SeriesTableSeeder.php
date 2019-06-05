@@ -49,6 +49,14 @@ class SeriesTableSeeder extends Seeder
                 'updated_at' => '2019-05-21 15:36:35',
                 'deleted_at' => NULL,
             ),
+            4 => 
+            array (
+                'id' => 5,
+                'name' => 'Revival',
+                'created_at' => '2019-06-05 08:44:31',
+                'updated_at' => '2019-06-05 08:44:31',
+                'deleted_at' => NULL,
+            ),
         ));
         
         

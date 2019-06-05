@@ -1,31 +1,45 @@
-<section class="bgwhite p-t-55 p-b-65">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+
+                
                 <div class="leftbar p-r-20 p-r-0-sm">
                     <!-- Authors -->
                     <h4 class="m-text14 p-b-7">
-                        Authors
+                        Comics
                     </h4>
 
                     <ul class="p-b-54">
                         
                         <li class="p-t-4">
-                            <a href="#" class="s-text13 active1">
+                            <a href="{{route("shop")}}" class="s-text13 active1">
                                 All
                             </a>
                         </li>
-                        @foreach($authors as $author)
-                        <li class="p-t-4">
-                            <a href="{{route('author',$author->id)}}" class="s-text13">
-                                {{$author->name}}
-                            </a>
-                        </li>
-
-                        @endforeach
+                        
                     </ul>
 
                     <!-- End Authors -->
+                    <!-- Authors -->
+                    <h4 class="m-text14 p-b-7">
+                            Authors
+                        </h4>
+    
+                        <ul class="p-b-54">
+                            
+                            <li class="p-t-4">
+                                <a href="#" class="s-text13 active1">
+                                    All
+                                </a>
+                            </li>
+                            @foreach($authors as $author)
+                            <li class="p-t-4">
+                                <a href="{{route('author',$author->id)}}" class="s-text13">
+                                    {{$author->name}}
+                                </a>
+                            </li>
+    
+                            @endforeach
+                        </ul>
+    
+                        <!-- End Authors -->
                     <!-- Series -->
                     <h4 class="m-text14 p-b-7">
                             Series

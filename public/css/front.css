@@ -2,10 +2,16 @@
     width: 250px;
 }
 .l-text2 {
-    color: #00796b;
+    color: #b71c1c;
 }
 .m-text13 {
-    color: #00796b;
+    color: #b71c1c;
+}
+.m-text2 {
+    text-align: center;
+}
+.product-display-text {
+    text-align: center;
 }
 .comic-title-bg {
     background-color: rgba(255, 255, 255, 0.65);
@@ -16,27 +22,27 @@
 }
 
 .color0-hov:hover {
-    color: #00796b;
+    color: #b71c1c;
 }
 .bg0 {
-    background-color: #70c9c4;
+    background-color: #b71c1c;
 }
 .eff2:active {
-    background-color: #70c9c4;
+    background-color: #b71c1c;
 }
 .hov1:hover {
-    background-color: #70c9c4;
+    background-color: #b71c1c;
 }
 .color0 {
-    color: #00796b;
+    color: #b71c1c;
 }
 .m-text8 {
     font-family: Montserrat-Regular;
     font-size: 16px;
-    color: #00796b;
+    color: #b71c1c;
 }
 a:hover {
-    color: #00796b;
+    color: #b71c1c;
 }
 .ralign {
     text-align: right;
@@ -44,4 +50,31 @@ a:hover {
 
 .price {
     color: #00796b;
+}
+.page-item.active .page-link {
+    background-color: #b71c1c;
+    border-color: #b71c1c;
+}
+.page-link {
+    color: #b71c1c;
+}
+
+.bgwallpaper {
+    background-image: url("/images/background.jpg");
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-position: center top !important;
+    background-size: cover;
+}
+
+.bgtitlepage {
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+.logo img {
+    max-height: 75px;
+}
+
+.capitalize {
+    text-transform: capitalize;
 }

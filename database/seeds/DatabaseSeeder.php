@@ -24,5 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(PhotosTableSeeder::class);
         $this->call(GenresTableSeeder::class);
+        $this->call(AuthorsTableSeeder::class);
+        $this->call(ComicGenreTableSeeder::class);
+        $this->call(OrdersTableSeeder::class);
     }
 }
