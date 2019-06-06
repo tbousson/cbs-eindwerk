@@ -62,7 +62,7 @@ class SerieController extends Controller
         $comicmessages = Comic::where('serie_id',$serie->id)->get();
         
         foreach($comicmessages as $comic){
-            response()->json(['error'=>'Comic '.$comic->title.' has been  deleted!']);
+            
         }
         $comics = Comic::where('serie_id',$serie->id)->delete();
         $deleting = $serie->name;
