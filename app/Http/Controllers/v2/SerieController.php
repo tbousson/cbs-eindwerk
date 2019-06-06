@@ -10,7 +10,9 @@ class SerieController extends Controller
     public function index()
     {
         $series = Serie::all();
-        return view('admin.v2.series.index', compact('series'));
+        $seriesTrashed = Serie::onlyTrashed()->get();
+        
+        return view('admin.v2.series.index', compact('series','seriesTrashed'));
     }
    
     public function create()
@@ -45,10 +47,20 @@ class SerieController extends Controller
         return redirect()->route('series.index')->with('success','Serie has been updated!');
     }
  
-    public function destroy(Serie $serie)
+    public function destroy($id)
     {
+        $serie = Serie::findOrFail($id);
+        $deleting = $serie->name;
         $serie->delete();
-        return redirect()->route('series.index')->with('error','Serie has been deleted!');
+        return redirect()->route('series.index')->with('error','Serie '.$deleting.' has been deleted!');
+    }
+    public function restore($id)
+    {
+        
+        $serie = Serie::findOrFail($id);
+        
+        $serie->restore();
+        return redirect()->route('series.index')->with('success','Serie '.$serie->name.' has been deleted!');
     }
         private function validateRequest(){
            
@@ -57,4 +69,6 @@ class SerieController extends Controller
         ]);
         
     }
+   
+        
 }

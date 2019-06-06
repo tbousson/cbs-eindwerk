@@ -18,12 +18,12 @@
           <table class="table" id="datatable">
             <thead>  
               <tr>
-                <th scope="col">id</th>
-                <th scope="col">name</th>
-                <th scope="col">role</th>
-                <th scope="col">email</th>
-                <th scope="col">edit</th>
-                <th scope="col">delete</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Role</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+                
               </tr>
             </thead>
             <tbody>	
@@ -33,13 +33,13 @@
                   <td>{{$user->name}}</td>
                   <td>{{$user->role ? $user->role->name : 'User without role'}}</td>
                   <td>{{$user->email}}</td>
-                  <td><a href="{{route('users.edit',$user->id)}}" class="btn btn-primary btn-sm">Edit</a></td>
                   <td>
                     <form action="{{route('users.destroy', $user->id)}}" method="POST">
                       @method('DELETE')
                       @csrf
-                      <button type="submit" class="btn btn-danger btn-sm">Delete User</button>
-                    </form></td>
+                      <button type="submit" class="btn btn-danger btn-sm float-right">Delete User</button>
+                    </form>
+                    <a href="{{route('users.edit',$user->id)}}" class="btn btn-info btn-sm float-right">Edit</a></td>
                 </tr>
               @endforeach
               </tbody>
@@ -65,7 +65,7 @@
       "paging": false,
       "pageLength": 0,
       "columnDefs": [{ 
-      "targets": [-1,-2], 
+      "targets": [-1], 
       "orderable": false,
       }],       
     });

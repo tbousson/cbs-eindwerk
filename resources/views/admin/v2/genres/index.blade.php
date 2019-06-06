@@ -9,35 +9,33 @@
 <div class="row">
 	<div class="col-md-12">
 		
-		<div class="card m-auto w-75">
+		<div class="card m-auto w-50">
 			<div class="card-header card-header-primary">
 				<h4 class="card-title ">Genres</h4>
-				{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
-				
+				<p class="card-category">A genre is a style or category of a Comic Book</p>
 			</div>
 			<div class="card-body">
 				<div>
 					<table class="table" id="datatable">
 						<thead>
 						<tr>
-							<th scope="col">id</th>
-							<th scope="col">name</th>
-							<th scope="col">edit</th>
-							<th scope="col">delete</th>
+							<th scope="col">ID</th>
+							<th scope="col">Name</th>
+							<th scope="col"></th>
 						</tr>
 						</thead>
 						<tbody>	
 							@foreach($genres as $genre)
 							<tr>
 								<td><a href="{{route('genres.edit',$genre->id)}}">{{$genre->id}}</a></td>
-								<td><a href="{{route('genres.show', $genre->id)}}">{{$genre->name}}</a></td>
-								<td><a href="{{route('genres.edit',$genre->id)}}" class="btn btn-primary btn-sm">Edit Genre</a></td>
+								<td>{{$genre->name}}</td>
 								<td>
 									<form action="{{route('genres.destroy', $genre->id)}}" method="POST">
 										@method('DELETE')
-										<button type="submit" class="btn btn-danger btn-sm">Delete Genre</a>
+										<button type="submit" class="btn btn-danger btn-sm float-right">Delete Genre</button>
 										@csrf
 									</form>
+									<a href="{{route('genres.edit',$genre->id)}}" class="btn btn-info btn-sm float-right">Edit Genre</a>
 								</td>
 							</tr>
 							@endforeach
@@ -61,7 +59,7 @@ $(document).ready( function () {
 		"paging": false,
 		"pageLength": 0,
 		"columnDefs": [{ 
-		"targets": [-1,-2], 
+		"targets": [-1], 
 		"orderable": false,
 		}],
 		});

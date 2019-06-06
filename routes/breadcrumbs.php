@@ -2,7 +2,7 @@
 
 // Admin
 Breadcrumbs::for('admin', function ($trail) {
-    $trail->push('Admin', route('adminv2'));
+    $trail->push('Admin', route('admin'));
 });
 /*********** USERS ***********/
 

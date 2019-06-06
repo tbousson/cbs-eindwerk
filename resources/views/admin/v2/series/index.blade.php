@@ -10,6 +10,14 @@
 			<div class="card w-75 m-auto">
 			  <div class="card-header card-header-primary">
 				<h4 class="card-title ">Series</h4>
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item">
+						  <a class="nav-link active" id="table-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Table</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" id="trashed-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Trashed</a>
+						</li>
+					  </ul>
 				{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
 				
 			  </div>
@@ -17,35 +25,61 @@
 				  
 
 				<div>
-
-	<table class="table" id="datatable">
-		<thead>
-		<tr>
-			<th scope="col">id</th>
-			<th scope="col">name</th>
-			<th scope="col">edit</th>
-			<th scope="col">delete</th>
-		</tr>
-		</thead>
-		<tbody>	
-			@foreach($series as $serie)
-			<tr>
-				<td><a href="{{route('series.edit',$serie->id)}}">{{$serie->id}}</a></td>
-				<td>{{$serie->name}}</td>
-				<td><a href="{{route('series.edit',$serie->id)}}" class="btn btn-primary btn-sm">Edit</a></td>
-				<td>
-					<form action="{{route('series.destroy', $serie->id)}}" method="POST">
-						@method('DELETE')
-						<button type="submit" class="btn btn-danger btn-sm">Delete Serie</a>
-						@csrf
-					</form>
-				</td>
-			</tr>
-			@endforeach
-	</tbody>
-	</table>
-
-
+	<div class="tab-content">
+		<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+		
+			<table class="table" id="datatable">
+				<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Name</th>
+					<th scope="col"></th>
+				</tr>
+				</thead>
+				<tbody>	
+					@foreach($series as $serie)
+					<tr>
+						<td><a href="{{route('series.edit',$serie->id)}}">{{$serie->id}}</a></td>
+						<td>{{$serie->name}}</td>
+						<td>
+							<form action="{{route('series.destroy', $serie->id)}}" method="POST">
+								@method('DELETE')
+								<button type="submit" class="btn btn-danger btn-sm float-right">Delete Serie</button>
+								@csrf
+							</form>
+							<a href="{{route('series.edit',$serie->id)}}" class="btn btn-info btn-sm float-right">Edit</a></td>
+					</tr>
+					@endforeach
+			</tbody>
+			</table>
+		</div>
+		<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				<table class="table" id="datatable">
+						<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Name</th>
+							<th scope="col"></th>
+						</tr>
+						</thead>
+						<tbody>	
+							@foreach($seriesTrashed as $serie)
+							
+							<tr> 
+								<td>{{$serie->id}}</td>
+								<td>{{$serie->name}}</td>
+								<td>
+									<a class="btn btn-sm btn-warning" href="{{route('series.restore',$serie->id)}}">Restore</a>
+									<form action="{{route('series.restore', $serie->id)}}" method="POST">
+											@method('PATCH')
+											<button type="submit" class="btn btn-danger btn-sm float-right">Restore Serie</button>
+											@csrf
+										</form>
+							</tr>
+							@endforeach
+					</tbody>
+					</table>
+		</div>
 
 
 @endsection
@@ -61,7 +95,7 @@
 			  "paging": false,
 			  "pageLength": 25,
 			  "columnDefs": [{ 
-			  "targets": [-1,-2], 
+			  "targets": [-1], 
 			  "orderable": false,
 			  }],
 			  });

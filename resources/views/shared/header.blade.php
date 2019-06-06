@@ -57,7 +57,7 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						Mudking Comics - Your Source for your Best Comics
+						Mudking Comics - Your Source for the Best Comics
 					</span>
 
 					

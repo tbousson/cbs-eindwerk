@@ -12,7 +12,7 @@
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="nav-item {{ request()->is('admin/v2') ? 'active' : '' }}  ">
-          <a class="nav-link" href="javascript:void(0)">
+          <a class="nav-link" href="{{route('admin')}}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>
