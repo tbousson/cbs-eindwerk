@@ -21,7 +21,7 @@
 				</div>
 				<div class="card-body">
 					<div class="tab-content">
-							<div class="card-body">
+							
 								<div class="tab-pane active" id="activetab" role="tabpanel" aria-labelledby="home-tab">
 									<table class="table" id="datatable">
 										<thead>		
@@ -88,19 +88,21 @@
 														<span class="badge badge-info">{{$genre->name}}</span>
 													@endforeach
 												</td> --}}
-												<td><form action="{{route('comics.destroy', $comic->id)}}" method="POST">
-													@method('DELETE')
+												<td><form method="POST" action="{{Route('comics.update', ['comic' => $comic])}}">
+													@method('PATCH')
+													<button type="submit" class="btn btn-success btn-sm float-right">Restore Comic</button>
 													@csrf
-													<button type="submit" class="btn btn-danger btn-sm float-right">Delete Comic</button>
-													</form>
-													<a href="{{route('comics.edit',$comic->id)}}" class="btn btn-info btn-sm float-right">Edit</a>
-												</td>
+												</form>
+											</td>
 											</tr>
 											@endforeach
 										</tbody>
 										</table>
 									</div>
-
+								</div>
+							</div>
+						</div>
+					</div>
 
 
 

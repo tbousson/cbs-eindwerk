@@ -17,8 +17,8 @@ class AdminUserController extends Controller
     public function index()
     {
         $users = User::with('role')->get();
-        
-        return view('admin.v2.users.index', compact('users'));
+        $usersTrashed = User::onlyTrashed()->with('role')->get();
+        return view('admin.v2.users.index', compact('users','usersTrashed'));
     }
 
     /**
@@ -30,11 +30,6 @@ class AdminUserController extends Controller
     {
         $roles = Role::all();
         $user = New User();
-
-
-    
-
-    
     return view('admin.v2.users.create', compact('user','roles'));
     }
 
@@ -46,11 +41,7 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        
-        
          User::create($this->validateRequest());
-
-
          return redirect()->route('users.index')->with('success','User has been created!');
     }
 
@@ -84,8 +75,14 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(request $request,User $user)
+    public function update(request $request,$id)
     {
+        $user = User::withTrashed()->findOrFail($id);
+        if($user->deleted_at)
+        {
+            $user->restore();
+            return redirect()->route('users.index')->with('success','User '.$user->name.' has been restored!');
+        }
         $this->validate($request, array(
             'name' => 'required|min:2',
             'email' => "required|email|unique:users,email,$user->id",

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\v2;
 
 use App\Publisher;
+use App\Comic;
 use Illuminate\Http\Request;
 
 class PublisherController extends Controller
@@ -10,7 +11,8 @@ class PublisherController extends Controller
     public function index()
     {
         $publishers = Publisher::all();
-        return view('admin.v2.publishers.index', compact('publishers'));
+        $publishersTrashed = Publisher::onlyTrashed()->get();
+        return view('admin.v2.publishers.index', compact('publishers','publishersTrashed'));
     }
    
     public function create()
@@ -34,8 +36,16 @@ class PublisherController extends Controller
         return view('admin.v2.publishers.edit', compact('publisher'));
     }
  
-    public function update(Request $request, Publisher $publisher)
+    public function update(Request $request, $id)
     {
+        $publisher = Publisher::withTrashed()->findOrFail($id);
+        
+        
+        if($publisher->deleted_at)
+        {
+            $publisher->restore();
+            return redirect()->route('publishers.index')->with('success','Publisher '.$publisher->name.' has been restored!');
+        }
         $this->validate($request, array(
             'name' => "required|min:2|unique:publishers,name,$publisher->id",
         ));
@@ -45,6 +55,8 @@ class PublisherController extends Controller
  
     public function destroy(Publisher $publisher)
     {
+        $comics = Comic::where('publisher_id',$publisher->id)->delete();
+        
         $publisher->delete();
         return redirect()->route('publishers.index')->with('error','Publisher has been deleted!');
     }

@@ -21,7 +21,7 @@
 						  <a class="nav-link" id="trashed-tab" data-toggle="tab" href="#trashtab" role="tab" aria-controls="profile" aria-selected="false">Trashed</a>
 						</li>@endif
 			</div>
-			<div class="card-body">
+			
 				<div class="card-body">
 						<div class="tab-content">
 							<div class="tab-pane active" id="activetab" role="tabpanel" aria-labelledby="home-tab">

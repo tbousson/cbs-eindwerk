@@ -74,6 +74,7 @@
 											<button type="submit" class="btn btn-success btn-sm float-right">Restore Serie</button>
 											@csrf
 										</form>
+									</td>
 							</tr>
 							@endforeach
 					</tbody>

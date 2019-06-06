@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\v2;
 
+use App\Comic;
 use App\Serie;
 use Illuminate\Http\Request;
 
@@ -58,6 +59,12 @@ class SerieController extends Controller
     public function destroy($id)
     {
         $serie = Serie::findOrFail($id);
+        $comicmessages = Comic::where('serie_id',$serie->id)->get();
+        
+        foreach($comicmessages as $comic){
+            response()->json(['error'=>'Comic '.$comic->title.' has been  deleted!']);
+        }
+        $comics = Comic::where('serie_id',$serie->id)->delete();
         $deleting = $serie->name;
         $serie->delete();
         return redirect()->route('series.index')->with('error','Serie '.$deleting.' has been deleted!');

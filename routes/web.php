@@ -62,3 +62,4 @@ Route::group(['middleware'=>'auth','prefix' => 'admin/v2','namespace' => 'v2'],f
 
     });
 });
+

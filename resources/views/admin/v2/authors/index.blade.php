@@ -12,16 +12,16 @@
 			<h4 class="card-title ">Authors</h4>
 			@if($authorsTrashed->count())<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
-					  <a class="nav-link" id="table-tab" data-toggle="tab" href="#activetab" role="tab" aria-controls="home" aria-selected="true">Active</a>
+					  <a class="nav-link" id="table-tab" data-toggle="tab" href="#activetab" role="tab" aria-controls="active" aria-selected="true">Active</a>
 					</li>
 					<li class="nav-item">
-					  <a class="nav-link" id="trashed-tab" data-toggle="tab" href="#trashtab" role="tab" aria-controls="profile" aria-selected="false">Trashed</a>
+					  <a class="nav-link" id="trashed-tab" data-toggle="tab" href="#trashtab" role="tab" aria-controls="trash" aria-selected="false">Trashed</a>
 					</li>@endif
 				  </ul>	
 			</div>
 			<div class="card-body">
 				<div class="tab-content">
-					<div class="tab-pane active" id="activetab" role="tabpanel" aria-labelledby="home-tab">
+					<div class="tab-pane active" id="activetab" role="tabpanel" aria-labelledby="active-tab">
 						<table class="table" id="datatable">
 						<thead>
 							<tr>
@@ -48,7 +48,7 @@
 						</tbody>
 					</table>
 					</div>
-					<div class="tab-pane" id="trashtab" role="tabpanel" aria-labelledby="profile-tab">
+					<div class="tab-pane" id="trashtab" role="tabpanel" aria-labelledby="trash-tab">
 						<table class="table" id="datatableTrash">
 								<thead>
 								<tr>

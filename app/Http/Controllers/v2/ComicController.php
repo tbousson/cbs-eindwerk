@@ -130,9 +130,37 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(Request $request, $id)
     {
-        
+        $comic = Comic::withTrashed()->findOrFail($id);
+        if($comic->deleted_at)
+        {
+            $message = [];
+            $publisher= Publisher::withTrashed()->findOrFail($comic->publisher_id);
+            $author= Author::withTrashed()->findOrFail($comic->author_id);
+            $serie= Serie::withTrashed()->findOrFail($comic->serie_id);
+            if($publisher->deleted_at || $author->deleted_at || $serie->deleted_at){
+               if($publisher->deleted_at){
+                    $publisher->restore();
+                    // $publishers
+                    
+                    
+               }
+                
+              
+            }
+            $comic->restore();
+            
+
+
+
+
+
+
+
+
+            return redirect()->route('comics.index')->with('success','Comic '.$comic->title.' has been restored!');
+        }
         $this->validate($request, array(
             'title' => "required|min:5|unique:comics,title,$comic->id",
             'description'=>'required',
