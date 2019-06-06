@@ -1,0 +1,31 @@
+/* badge-material colors */
+.badge-info {
+    background-color: #029eb1;
+}
+
+/* Datatables css */
+
+/* corrects the background color of table  */
+table.dataTable tbody tr {
+    background-color: inherit;
+}
+
+/* Breadcrumbs markup */
+.breadcrumb {
+    background-color: inherit;
+}
+
+/* Material css */
+
+select option {
+    background-color: #1a2035;
+    /* background-color: #202a40; */
+}
+
+/* Jquery Select */
+/* .select-bg-color {
+    background-color: #202a40;
+}
+.select2-container--default .select2-selection--multiple {
+    background-color: #202a40;
+} */
