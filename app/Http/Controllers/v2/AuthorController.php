@@ -10,7 +10,8 @@ class AuthorController extends Controller
     public function index()
     {
         $authors = Author::all();
-        return view('admin.v2.authors.index', compact('authors'));
+        $authorsTrashed = Author::onlyTrashed()->get();
+        return view('admin.v2.authors.index', compact('authors','authorsTrashed'));
     }
    
     public function create()
@@ -34,8 +35,16 @@ class AuthorController extends Controller
         return view('admin.v2.authors.edit', compact('author'));
     }
  
-    public function update(Request $request, Author $author)
+    public function update(Request $request, $id)
     {
+        $author = Author::withTrashed()->findOrFail($id);
+        
+        
+        if($author->deleted_at)
+        {
+            $author->restore();
+            return redirect()->route('authors.index')->with('success','Author '.$author->name.' has been restored!');
+        }
         $this->validate($request, array(
             'name' => "required|min:2|unique:authors,name,$author->id",
         ));

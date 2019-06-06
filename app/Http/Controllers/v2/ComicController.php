@@ -21,8 +21,9 @@ class ComicController extends Controller
     public function index()
     {
         $comics = Comic::with('Author','Serie','Publisher','Genres')->get();
+        $comicsTrashed = Comic::onlyTrashed()->with('Author','Serie','Publisher','Genres')->get();
         
-        return view ('admin.v2.comics.index',compact('comics'));
+        return view ('admin.v2.comics.index',compact('comics','comicsTrashed'));
     }
 
     /**
@@ -215,6 +216,8 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $deleting = $comic->name;
+        $comic->delete();
+        return redirect()->route('comics.index')->with('error','Comic '.$deleting.' has been deleted!');
     }
 }

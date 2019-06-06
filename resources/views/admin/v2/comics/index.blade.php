@@ -10,46 +10,96 @@
 			<div class="card w-100 m-auto">
 				<div class="card-header card-header-primary">
 				<h4 class="card-title ">Comics</h4>
-				{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}	
+				@if($comicsTrashed->count())<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item">
+						  <a class="nav-link" id="table-tab" data-toggle="tab" href="#activetab" role="tab" aria-controls="home" aria-selected="true">Active</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" id="trashed-tab" data-toggle="tab" href="#trashtab" role="tab" aria-controls="profile" aria-selected="false">Trashed</a>
+						</li>@endif
+					  </ul>	
 				</div>
 				<div class="card-body">
-					<table class="table" id="datatable">
-						<thead>		
-						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Image</th>
-							<th scope="col">Name</th>
-							<th scope="col">Price</th>
-							<th scope="col">Serie</th>
-							{{-- <th scope="col">genres</th> --}}
-							<th scope="col"></th>
-						</tr>
-						</thead>
-						<tbody>	
-						@foreach($comics as $comic)
-						<tr>
-							<td><a href="{{route('comics.edit',$comic->id)}}">{{$comic->id}}</a></td>
-							<td>@if($comic->photo_id)<img src="{{url($comic->photo->thumbnail)}}" height="50px;">@endif
-							</td>
-							<td>{{$comic->title}}</td>
-							
-							<td>{{$comic->price}}</td>
-							<td>{{$comic->serie ? $comic->serie->name : 'no serie'}}</td>
-							{{-- <td>@foreach($comic->genres as $genre)
-									<span class="badge badge-info">{{$genre->name}}</span>
-								@endforeach
-							</td> --}}
-							<td><form action="{{route('comics.destroy', $comic->id)}}" method="POST">
-								@method('DELETE')
-								@csrf
-								<button type="submit" class="btn btn-danger btn-sm float-right">Delete Comic</button>
-								</form>
-								<a href="{{route('comics.edit',$comic->id)}}" class="btn btn-info btn-sm float-right">Edit</a>
-							</td>
-						</tr>
-						@endforeach
-					</tbody>
-					</table>
+					<div class="tab-content">
+							<div class="card-body">
+								<div class="tab-pane active" id="activetab" role="tabpanel" aria-labelledby="home-tab">
+									<table class="table" id="datatable">
+										<thead>		
+										<tr>
+											<th scope="col">ID</th>
+											<th scope="col">Image</th>
+											<th scope="col">Name</th>
+											<th scope="col">Price</th>
+											<th scope="col">Serie</th>
+											{{-- <th scope="col">genres</th> --}}
+											<th scope="col"></th>
+										</tr>
+										</thead>
+										<tbody>	
+										@foreach($comics as $comic)
+										<tr>
+											<td><a href="{{route('comics.edit',$comic->id)}}">{{$comic->id}}</a></td>
+											<td>@if($comic->photo_id)<img src="{{url($comic->photo->thumbnail)}}" height="50px;">@endif
+											</td>
+											<td>{{$comic->title}}</td>
+											
+											<td>{{$comic->price}}</td>
+											<td>{{$comic->serie ? $comic->serie->name : 'no serie'}}</td>
+											{{-- <td>@foreach($comic->genres as $genre)
+													<span class="badge badge-info">{{$genre->name}}</span>
+												@endforeach
+											</td> --}}
+											<td><form action="{{route('comics.destroy', $comic->id)}}" method="POST">
+												@method('DELETE')
+												@csrf
+												<button type="submit" class="btn btn-danger btn-sm float-right">Delete Comic</button>
+												</form>
+												<a href="{{route('comics.edit',$comic->id)}}" class="btn btn-info btn-sm float-right">Edit</a>
+											</td>
+										</tr>
+										@endforeach
+									</tbody>
+									</table>
+								</div>
+								<div class="tab-pane" id="trashtab" role="tabpanel" aria-labelledby="profile-tab">
+										<table class="table" id="datatableTrash">
+											<thead>		
+											<tr>
+												<th scope="col">ID</th>
+												<th scope="col">Image</th>
+												<th scope="col">Name</th>
+												<th scope="col">Price</th>
+												<th scope="col">Serie</th>
+												{{-- <th scope="col">genres</th> --}}
+												<th scope="col"></th>
+											</tr>
+											</thead>
+											<tbody>	
+											@foreach($comicsTrashed as $comic)
+											<tr>
+												<td><a href="{{route('comics.edit',$comic->id)}}">{{$comic->id}}</a></td>
+												<td>@if($comic->photo_id)<img src="{{url($comic->photo->thumbnail)}}" height="50px;">@endif
+												</td>
+												<td>{{$comic->title}}</td>
+												
+												<td>{{$comic->price}}</td>
+												<td>{{$comic->serie ? $comic->serie->name : 'no serie'}}</td>
+												{{-- <td>@foreach($comic->genres as $genre)
+														<span class="badge badge-info">{{$genre->name}}</span>
+													@endforeach
+												</td> --}}
+												<td><form action="{{route('comics.destroy', $comic->id)}}" method="POST">
+													@method('DELETE')
+													@csrf
+													<button type="submit" class="btn btn-danger btn-sm float-right">Delete Comic</button>
+													</form>
+													<a href="{{route('comics.edit',$comic->id)}}" class="btn btn-info btn-sm float-right">Edit</a>
+												</td>
+											</tr>
+											@endforeach
+										</tbody>
+										</table>
+									</div>
 
 
 
@@ -73,6 +123,20 @@
 			}],
 			});
 	} );
+	$(document).ready( function () {
+			$('#datatableTrash').DataTable(
+			{
+			  'iDisplayLength': -1,
+			  "lengthChange": false,  
+			  "info": false,  
+			  "paging": false,
+			  "pageLength": 25,
+			  "columnDefs": [{ 
+			  "targets": [-1], 
+			  "orderable": false,
+			  }],
+			  });
+		} );
 </script>
 <script> //datatable css
 $(document).ready(function() {

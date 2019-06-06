@@ -57,6 +57,20 @@
 			}],
 			});
 	} );
+	$(document).ready( function () {
+			$('#datatableTrash').DataTable(
+			{
+			  'iDisplayLength': -1,
+			  "lengthChange": false,  
+			  "info": false,  
+			  "paging": false,
+			  "pageLength": 25,
+			  "columnDefs": [{ 
+			  "targets": [-1], 
+			  "orderable": false,
+			  }],
+			  });
+		} );
 </script>
 <script> //datatable css
 	$(document).ready(function() {

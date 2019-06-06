@@ -39,7 +39,15 @@ class SerieController extends Controller
  
     public function update(Request $request, $id)
     {
-        $serie = Serie::findOrFail($id);
+        
+        $serie = Serie::withTrashed()->findOrFail($id);
+        
+        
+        if($serie->deleted_at)
+        {
+            $serie->restore();
+            return redirect()->route('series.index')->with('success','Serie '.$serie->name.' has been restored!');
+        }
         $this->validate($request, array(
             'name' => "required|min:2|unique:series,name,$serie->id",
         ));

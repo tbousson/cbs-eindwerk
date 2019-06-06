@@ -10,7 +10,8 @@ class GenreController extends Controller
     public function index()
     {
         $genres = Genre::all();
-        return view('admin.v2.genres.index', compact('genres'));
+        $genresTrashed = Genre::onlyTrashed()->get();
+        return view('admin.v2.genres.index', compact('genres','genresTrashed'));
     }
    
     public function create()
@@ -34,8 +35,16 @@ class GenreController extends Controller
         return view('admin.v2.genres.edit', compact('genre'));
     }
  
-    public function update(Request $request, Genre $genre)
+    public function update(Request $request, $id)
     {
+        $genre = Genre::withTrashed()->findOrFail($id);
+        
+        
+        if($genre->deleted_at)
+        {
+            $genre->restore();
+            return redirect()->route('genres.index')->with('success','Genre '.$genre->name.' has been restored!');
+        }
         $this->validate($request, array(
             'name' => "required|min:2|unique:genres,name,$genre->id",
         ));

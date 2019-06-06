@@ -7,16 +7,16 @@
 @section('content')
 <div class="row">
 		<div class="col-md-12">
-			<div class="card w-75 m-auto">
+			<div class="card w-50 m-auto">
 			  <div class="card-header card-header-primary">
 				<h4 class="card-title ">Series</h4>
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				@if($seriesTrashed->count())<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item">
-						  <a class="nav-link active" id="table-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Table</a>
+						  <a class="nav-link" id="table-tab" data-toggle="tab" href="#activetab" role="tab" aria-controls="home" aria-selected="true">Active</a>
 						</li>
 						<li class="nav-item">
-						  <a class="nav-link" id="trashed-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Trashed</a>
-						</li>
+						  <a class="nav-link" id="trashed-tab" data-toggle="tab" href="#trashtab" role="tab" aria-controls="profile" aria-selected="false">Trashed</a>
+						</li>@endif
 					  </ul>
 				{{-- <p class="card-category"> Here is a subtitle for this table</p> --}}
 				
@@ -26,7 +26,7 @@
 
 				<div>
 	<div class="tab-content">
-		<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+		<div class="tab-pane active" id="activetab" role="tabpanel" aria-labelledby="home-tab">
 		
 			<table class="table" id="datatable">
 				<thead>
@@ -53,8 +53,8 @@
 			</tbody>
 			</table>
 		</div>
-		<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-				<table class="table" id="datatable">
+		<div class="tab-pane" id="trashtab" role="tabpanel" aria-labelledby="profile-tab">
+				<table class="table" id="datatableTrash">
 						<thead>
 						<tr>
 							<th scope="col">ID</th>
@@ -69,17 +69,16 @@
 								<td>{{$serie->id}}</td>
 								<td>{{$serie->name}}</td>
 								<td>
-									<a class="btn btn-sm btn-warning" href="{{route('series.restore',$serie->id)}}">Restore</a>
-									<form action="{{route('series.restore', $serie->id)}}" method="POST">
+									<form method="POST" action="{{Route('series.update', ['serie' => $serie])}}">
 											@method('PATCH')
-											<button type="submit" class="btn btn-danger btn-sm float-right">Restore Serie</button>
+											<button type="submit" class="btn btn-success btn-sm float-right">Restore Serie</button>
 											@csrf
 										</form>
 							</tr>
 							@endforeach
 					</tbody>
 					</table>
-		</div>
+				</div>
 
 
 @endsection
@@ -88,6 +87,20 @@
 <script>
 		$(document).ready( function () {
 			$('#datatable').DataTable(
+			{
+			  'iDisplayLength': -1,
+			  "lengthChange": false,  
+			  "info": false,  
+			  "paging": false,
+			  "pageLength": 25,
+			  "columnDefs": [{ 
+			  "targets": [-1], 
+			  "orderable": false,
+			  }],
+			  });
+		} );
+		$(document).ready( function () {
+			$('#datatableTrash').DataTable(
 			{
 			  'iDisplayLength': -1,
 			  "lengthChange": false,  
