@@ -60,12 +60,12 @@
           enter: 'animated fadeInUp',
           exit: 'animated fadeOutDown'
         },
+        
+       
+      
       })
-      // .show();
-      // @php
-      //   Session::forget('warning');
-      // @endphp
   @endif
+ 
 
 
   @if(Session::has('error'))

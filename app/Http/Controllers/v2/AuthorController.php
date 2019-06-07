@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\v2;
 
+use App\Comic;
 use App\Author;
+use Session;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -54,6 +56,21 @@ class AuthorController extends Controller
  
     public function destroy(Author $author)
     {
+        $comics = Comic::where('author_id',$author->id)->get();
+        $comicname="";
+        if($comics->count()){
+            foreach($comics as $comic ){
+                $comicname=$comicname."[".$comic->title."] ";
+                // $message[]=(object) array("action"=>"Relation","model"=>"comic","id"=>$comic->id,"name"=>$comic->title,'deleted by'=> $publisher->name);
+                $comic->delete();
+                
+                
+                
+            }
+            Session::flash("warning","Due to relations some Comics have been deleted! $comicname");
+            }
+      
+        
         $deleting = $author->name;
         $author->delete();
         return redirect()->route('authors.index')->with('error','Author '.$deleting.' has been deleted!');

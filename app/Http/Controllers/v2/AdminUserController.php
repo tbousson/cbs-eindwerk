@@ -42,7 +42,7 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
          User::create($this->validateRequest());
-         return redirect()->route('users.index')->with('success','User has been created!');
+         return redirect()->route('users.index')->with('success','User '.$user->name.' has been created!');
     }
 
     /**

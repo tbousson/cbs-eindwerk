@@ -30,7 +30,7 @@
 											<th scope="col">Image</th>
 											<th scope="col">Name</th>
 											<th scope="col">Price</th>
-											<th scope="col">Serie</th>
+											<th scope="col">Publisher</th>
 											{{-- <th scope="col">genres</th> --}}
 											<th scope="col"></th>
 										</tr>
@@ -44,7 +44,7 @@
 											<td>{{$comic->title}}</td>
 											
 											<td>{{$comic->price}}</td>
-											<td>{{$comic->serie ? $comic->serie->name : 'no serie'}}</td>
+											<td>{{$comic->publisher ? $comic->publisher->name : 'no serie'}}</td>
 											{{-- <td>@foreach($comic->genres as $genre)
 													<span class="badge badge-info">{{$genre->name}}</span>
 												@endforeach
@@ -69,7 +69,7 @@
 												<th scope="col">Image</th>
 												<th scope="col">Name</th>
 												<th scope="col">Price</th>
-												<th scope="col">Serie</th>
+												<th scope="col">Publisher</th>
 												{{-- <th scope="col">genres</th> --}}
 												<th scope="col"></th>
 											</tr>
@@ -83,7 +83,7 @@
 												<td>{{$comic->title}}</td>
 												
 												<td>{{$comic->price}}</td>
-												<td>{{$comic->serie ? $comic->serie->name : 'no serie'}}</td>
+												<td>{{$comic->publisher ? $comic->publisher->name : 'no serie'}}</td>
 												{{-- <td>@foreach($comic->genres as $genre)
 														<span class="badge badge-info">{{$genre->name}}</span>
 													@endforeach

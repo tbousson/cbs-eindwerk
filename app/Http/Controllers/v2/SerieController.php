@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v2;
 
 use App\Comic;
 use App\Serie;
+use Session;
 use Illuminate\Http\Request;
 
 class SerieController extends Controller
@@ -25,7 +26,7 @@ class SerieController extends Controller
     public function store(Request $request)
     {
         Serie::create($this->validateRequest());
-        return redirect()->route('series.index')->with('success','Serie has been created!');
+        return redirect()->route('series.index')->with('success','Serie '.$serie->name.' has been created!');
     }
   
     public function show($id)
@@ -53,18 +54,26 @@ class SerieController extends Controller
             'name' => "required|min:2|unique:series,name,$serie->id",
         ));
         $serie->update($request->all());
-        return redirect()->route('series.index')->with('success','Serie has been updated!');
+        return redirect()->route('series.index')->with('success','Serie'.$serie->name.' has been updated!');
     }
  
     public function destroy($id)
     {
         $serie = Serie::findOrFail($id);
-        $comicmessages = Comic::where('serie_id',$serie->id)->get();
+        $comics = Comic::where('serie_id',$serie->id)->get();
+        $comicname="";
+        if($comics->count()){
+            foreach($comics as $comic ){
+                $comicname=$comicname."[".$comic->title."] ";
+                // $message[]=(object) array("action"=>"Relation","model"=>"comic","id"=>$comic->id,"name"=>$comic->title,'deleted by'=> $publisher->name);
+                $comic->delete();
+                
+                
+                
+            }
+            Session::flash("warning","Due to relations some Comics have been deleted! $comicname");
+            }
         
-        foreach($comicmessages as $comic){
-            
-        }
-        $comics = Comic::where('serie_id',$serie->id)->delete();
         $deleting = $serie->name;
         $serie->delete();
         return redirect()->route('series.index')->with('error','Serie '.$deleting.' has been deleted!');

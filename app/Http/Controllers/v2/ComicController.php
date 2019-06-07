@@ -11,6 +11,7 @@ use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use Session;
 class ComicController extends Controller
 {
     /**
@@ -93,7 +94,7 @@ class ComicController extends Controller
         $id = Comic::create($input)->id;
         $comic = Comic::findOrFail($id);
         $comic->genres()->attach($request->genres);
-        return redirect()->route('comics.index')->with('success','Comic has been created!');
+        return redirect()->route('comics.index')->with('success','Comic '.$comic->title.' has been created!');
     }
 
     /**
@@ -139,15 +140,22 @@ class ComicController extends Controller
             $publisher= Publisher::withTrashed()->findOrFail($comic->publisher_id);
             $author= Author::withTrashed()->findOrFail($comic->author_id);
             $serie= Serie::withTrashed()->findOrFail($comic->serie_id);
+            $pubrestore = $authrestore = $serrestore="";
             if($publisher->deleted_at || $author->deleted_at || $serie->deleted_at){
                if($publisher->deleted_at){
-                    $publisher->restore();
-                    // $publishers
-                    
-                    
+                   $pubrestore='Publisher: ['.$publisher->name.']  ';
+                    $publisher->restore();   
                }
-                
-              
+               if($author->deleted_at){
+                $authrestore='Author: ['.$author->name.']  ';
+                $author->restore();
+                }
+                if($serie->deleted_at){
+                    $serrestore='Serie: ['.$serie->name.']  ';
+                    $serie->restore();
+                }
+                $msg='Due to relations following have been restored...'.$pubrestore.$authrestore.$serrestore;
+             Session::flash("warning",$msg);
             }
             $comic->restore();
             
@@ -233,7 +241,7 @@ class ComicController extends Controller
             $comic->genres()->sync(array());
         }
         
-        return redirect()->route('comics.index')->with('success','Comic has been updated!');
+        return redirect()->route('comics.index')->with('success','Comic '.$comic->title.' has been updated!');
     }
 
     /**

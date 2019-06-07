@@ -13,29 +13,7 @@
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
-                        <table class="table">
-                          <thead class=" text-primary">
-                            <th>
-                              ID
-                            </th>
-                            <th>
-                              Name
-                            </th>
-                            <th>
-                              Country
-                            </th>
-                            <th>
-                              City
-                            </th>
-                            <th>
-                              Salary
-                            </th>
-                          </thead>
-                          <tbody>
-                            
-                            </tr>
-                          </tbody>
-                        </table>
+                          
                       </div>
                     </div>
                   </div>
