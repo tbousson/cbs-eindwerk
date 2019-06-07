@@ -22,7 +22,7 @@ class CreateComicsTable extends Migration
             $table->unsignedBigInteger('publisher_id');
             $table->unsignedBigInteger('photo_id')->default(0);
             $table->year('publishyear');
-            $table->integer('price');
+            $table->decimal('price');
             $table->integer('stock')->default(0);
             $table->timestamps();
             $table->softDeletes();

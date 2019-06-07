@@ -5,12 +5,14 @@
 	<section class="">
 			<div class="container p-t-55 p-b-65 bgwhite">
 				<div class="row">
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
+						<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
 	@include('shared.sidebar')
 	@yield('content')
 		
 	@include('shared.footer')
-
+				</div>
+			</div>
+	</section>
 <!--===============================================================================================-->
 <script type="text/javascript" src="{{asset("vendor/jquery/jquery-3.2.1.min.js")}}"></script>
 <!--===============================================================================================-->

@@ -4,7 +4,7 @@
 
 @section('titlebar')
 	<!-- Title Page -->
-	@include('shared.titlepage', ['title' => 'Comic Book Shop','subtitle' => 'Find All The Best Comics Here!', 'background' => 'images/comic-1.jpg'])
+	@include('shared.titlepage', ['title' => 'Mudking Comics shop','subtitle' => 'Find All The Best Comics Here!', 'background' => 'images/comic-1.jpg'])
 @endsection
 
 	
@@ -77,17 +77,18 @@
 							</div>
 						</div>
 						@endforeach
+					</div>
 
 						
 
 						
 
 					<!-- Pagination -->
+					<div class="row">
 					@include('shared.pagination')
+					</div>
 				</div>
-			</div>
-		</div>
-	</section>
+			
 
 
 	
