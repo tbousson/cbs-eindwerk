@@ -25,7 +25,7 @@ class PublisherController extends Controller
   
     public function store(Request $request)
     {
-        Publisher::create($this->validateRequest());
+        $publisher=Publisher::create($this->validateRequest());
         return redirect()->route('publishers.index')->with('success','Publisher '.$publisher->name.' has been created!');
     }
   

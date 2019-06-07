@@ -24,7 +24,7 @@ class AuthorController extends Controller
   
     public function store(Request $request)
     {
-        Author::create($this->validateRequest());
+        $author=Author::create($this->validateRequest());
         return redirect()->route('authors.index')->with('success','Author '.$author->name.' has been created!');
     }
   

@@ -85,12 +85,6 @@ class ComicController extends Controller
             $input['photo_id'] = $photo;
             
         }
-            
-            
-            
-           
-
-        
         $id = Comic::create($input)->id;
         $comic = Comic::findOrFail($id);
         $comic->genres()->attach($request->genres);

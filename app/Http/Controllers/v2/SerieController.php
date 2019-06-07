@@ -25,7 +25,7 @@ class SerieController extends Controller
   
     public function store(Request $request)
     {
-        Serie::create($this->validateRequest());
+        $serie=Serie::create($this->validateRequest());
         return redirect()->route('series.index')->with('success','Serie '.$serie->name.' has been created!');
     }
   

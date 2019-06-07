@@ -18,10 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $contents = Storage::get('public/databaselog.txt');
-        foreach (explode("\n", $contents) as $key=>$line){
-            $array[$key] = explode('\n', $line);
-        }
+        
         
         return view('admin.v2.index',compact('array'));
     }
