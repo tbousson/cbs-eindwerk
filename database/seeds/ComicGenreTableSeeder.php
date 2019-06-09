@@ -192,6 +192,21 @@ class ComicGenreTableSeeder extends Seeder
                 'comic_id' => 13,
                 'genre_id' => 8,
             ),
+            35 => 
+            array (
+                'comic_id' => 14,
+                'genre_id' => 6,
+            ),
+            36 => 
+            array (
+                'comic_id' => 14,
+                'genre_id' => 7,
+            ),
+            37 => 
+            array (
+                'comic_id' => 14,
+                'genre_id' => 8,
+            ),
         ));
         
         

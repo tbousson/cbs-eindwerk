@@ -245,8 +245,8 @@
 		<!-- Header Mobile -->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
-			<a href="index.html" class="logo-mobile">
-				<img src="{{asset("images/icons/logo.png")}}" alt="IMG-LOGO">
+			<a href="{{route("home")}}"" class="logo-mobile">
+				<img src="{{asset("images/icons/mudkinglogo3.png")}}" alt="IMG-LOGO"><span class="fs-20"> Mudking Comics</span>
 			</a>
 
 			<!-- Button show menu -->
@@ -260,7 +260,9 @@
 					<span class="linedivide2"></span>
 
 					<div class="header-wrapicon2">
+							
 						<img src="{{asset("images/icons/icon-header-02.png")}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
+						
 						<span class="header-icons-noti">0</span>
 
 						<!-- Header cart noti -->

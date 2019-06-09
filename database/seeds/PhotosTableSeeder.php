@@ -134,6 +134,15 @@ class PhotosTableSeeder extends Seeder
                 'created_at' => '2019-06-05 08:52:03',
                 'updated_at' => '2019-06-05 08:52:03',
             ),
+            13 => 
+            array (
+                'id' => 14,
+                'name' => NULL,
+                'url' => '/storage/photos/1559817403revival-vol-5-tp-gathering-of-waters_1bdd845385.jpg',
+                'thumbnail' => '/storage/thumbnails/thumbnail_1559817403revival-vol-5-tp-gathering-of-waters_1bdd845385.jpg',
+                'created_at' => '2019-06-06 10:36:43',
+                'updated_at' => '2019-06-06 10:36:43',
+            ),
         ));
         
         

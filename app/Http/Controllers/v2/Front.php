@@ -16,7 +16,8 @@ class Front extends Controller
     var $series;
     var $publishers;
     var $genres;
-    
+   
+  
 
     public function __construct(){
         $this->comics = Comic::all();
@@ -110,4 +111,6 @@ class Front extends Controller
         $role=$user->role->name;
         return view('profile', compact('user','role'));
     }
+    //Payment System
+  
 }
