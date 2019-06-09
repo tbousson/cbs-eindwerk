@@ -26,6 +26,11 @@ Route::get('/genre/{id}','Front@genre')->name('genre');
 Route::get('/contact', 'Front@contact')->name('contact');
 Route::get('/about', 'Front@about')->name('about');
 
+
+
+// Payment system
+Route::get('/cart', 'Front@cart')->name('cart');
+
 Auth::routes();
 //  Route::get('/admin','AdminController@index')->name('admin');
  

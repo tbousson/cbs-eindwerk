@@ -110,4 +110,7 @@ class Front extends Controller
         $role=$user->role->name;
         return view('profile', compact('user','role'));
     }
+    public function cart(){
+        return view('cart');
+    }
 }

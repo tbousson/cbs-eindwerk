@@ -38,7 +38,7 @@ and Matt Hollingsworth (Tokyo Ghost, Wyches) to take readers on a hard road thro
                 'price' => 15,
                 'stock' => 1,
                 'created_at' => '2019-04-20 21:24:05',
-                'updated_at' => '2019-06-04 20:53:36',
+                'updated_at' => '2019-06-07 14:05:33',
                 'deleted_at' => NULL,
             ),
             1 => 
@@ -60,7 +60,7 @@ Collects SEVEN TO ETERNITY #5-9',
                 'price' => 20,
                 'stock' => 3,
                 'created_at' => '2019-04-20 21:24:05',
-                'updated_at' => '2019-06-05 00:47:34',
+                'updated_at' => '2019-06-07 14:05:42',
                 'deleted_at' => NULL,
             ),
             2 => 
@@ -79,7 +79,7 @@ but to what lengths will he go to achieve it? RICK REMENDER and JEROME OPEÑA br
                 'price' => 25,
                 'stock' => 5,
                 'created_at' => '2019-04-20 21:24:05',
-                'updated_at' => '2019-06-05 00:48:32',
+                'updated_at' => '2019-06-07 14:05:44',
                 'deleted_at' => NULL,
             ),
             3 => 
@@ -97,7 +97,7 @@ At first glance, the Reverend Jesse Custer doesn\'t look like anyone special-jus
                 'price' => 10,
                 'stock' => 3,
                 'created_at' => '2019-04-28 19:38:23',
-                'updated_at' => '2019-06-05 00:48:47',
+                'updated_at' => '2019-06-07 10:36:30',
                 'deleted_at' => NULL,
             ),
             4 => 
@@ -115,7 +115,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'price' => 10,
                 'stock' => 1,
                 'created_at' => '2019-04-28 19:40:44',
-                'updated_at' => '2019-06-05 00:49:12',
+                'updated_at' => '2019-06-07 10:36:32',
                 'deleted_at' => NULL,
             ),
             5 => 
@@ -131,7 +131,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'price' => 15,
                 'stock' => 5,
                 'created_at' => '2019-06-04 15:30:00',
-                'updated_at' => '2019-06-05 00:49:49',
+                'updated_at' => '2019-06-07 10:36:34',
                 'deleted_at' => NULL,
             ),
             6 => 
@@ -147,7 +147,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'price' => 10,
                 'stock' => 1,
                 'created_at' => '2019-06-05 08:12:34',
-                'updated_at' => '2019-06-05 08:12:34',
+                'updated_at' => '2019-06-07 10:36:36',
                 'deleted_at' => NULL,
             ),
             7 => 
@@ -163,7 +163,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'price' => 15,
                 'stock' => 1,
                 'created_at' => '2019-06-05 08:16:45',
-                'updated_at' => '2019-06-05 08:16:45',
+                'updated_at' => '2019-06-07 10:36:38',
                 'deleted_at' => NULL,
             ),
             8 => 
@@ -179,7 +179,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'price' => 12,
                 'stock' => 5,
                 'created_at' => '2019-06-05 08:19:42',
-                'updated_at' => '2019-06-05 08:19:42',
+                'updated_at' => '2019-06-07 10:07:37',
                 'deleted_at' => NULL,
             ),
             9 => 
@@ -195,7 +195,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'price' => 13,
                 'stock' => 3,
                 'created_at' => '2019-06-05 08:46:49',
-                'updated_at' => '2019-06-05 08:46:49',
+                'updated_at' => '2019-06-07 10:36:40',
                 'deleted_at' => NULL,
             ),
             10 => 
@@ -211,7 +211,7 @@ In this continuing saga of the bizarre life of a faithless Texas preacher, Jesse
                 'price' => 12,
                 'stock' => 3,
                 'created_at' => '2019-06-05 08:49:36',
-                'updated_at' => '2019-06-05 08:49:36',
+                'updated_at' => '2019-06-07 10:36:42',
                 'deleted_at' => NULL,
             ),
             11 => 
@@ -229,7 +229,7 @@ For one day in rural central Wisconsin, the dead came back to life. Now the livi
                 'price' => 15,
                 'stock' => 3,
                 'created_at' => '2019-06-05 08:50:51',
-                'updated_at' => '2019-06-05 08:50:51',
+                'updated_at' => '2019-06-07 10:36:45',
                 'deleted_at' => NULL,
             ),
             12 => 
@@ -245,7 +245,23 @@ For one day in rural central Wisconsin, the dead came back to life. Now the livi
                 'price' => 17,
                 'stock' => 9,
                 'created_at' => '2019-06-05 08:52:03',
-                'updated_at' => '2019-06-05 08:52:03',
+                'updated_at' => '2019-06-07 10:36:48',
+                'deleted_at' => NULL,
+            ),
+            13 => 
+            array (
+                'id' => 14,
+                'title' => 'Revival vol. 5 - Gathering of Waters TP',
+                'description' => 'For one day in rural central Wisconsin, the dead came back to life. Now it’s up to Officer Dana Cypress to deal with the media scrutiny, religious zealots, and government quarantine that have come with them. As the pregnant Em searches for the missing father of her child, Dana is embroiled in a conspiracy to contain Revivers that ends in fire. Collects REVIVAL #24-29.',
+                'author_id' => 4,
+                'serie_id' => 5,
+                'publisher_id' => 1,
+                'photo_id' => 14,
+                'publishyear' => 2015,
+                'price' => 15,
+                'stock' => 5,
+                'created_at' => '2019-06-06 10:36:43',
+                'updated_at' => '2019-06-07 10:36:51',
                 'deleted_at' => NULL,
             ),
         ));
