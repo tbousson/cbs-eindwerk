@@ -1,0 +1,5 @@
+Delete,Model,Name,byUser,ByRelation,Relation
+Delete,Model,Name,byUser,ByRelation,Relation
+Delete,Model,Name,byUser,ByRelation,Relation
+Delete,Model,Name,byUser,ByRelation,Relation
+[{"action":"Delete","model":"publisher","id":1,"name":"Image","deleted by":"users"}]
