@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use app\User;
 use App\Order;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,7 +15,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+       
+
+        return view('completed');
     }
 
     /**

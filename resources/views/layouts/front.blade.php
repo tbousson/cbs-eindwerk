@@ -60,6 +60,7 @@
 
 <!--===============================================================================================-->
 	<script src="{{asset("js/main.js")}}"></script>
-
+	<script src="{{asset("assets/js/plugins/bootstrap-notify.js")}}"></script>
+	@include('layouts.v2.notify-message')
 </body>
 </html>
