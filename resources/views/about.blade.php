@@ -6,7 +6,6 @@
 @section('content')
 	<!-- Title Page -->
 	
-
 	<!-- content page -->
 	<section class="">
 		<div class="container bgwhite p-t-20">

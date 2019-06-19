@@ -37,7 +37,7 @@
 								<div class="ralign col">
 								<form action="{{url('cart')}}" method="post">
 									<input type="hidden" name="comic_id" value="{{$comic->id}}">
-									<input type="hidden" name="_token" value="{{csrf_token()}}"></input>
+									<input type="hidden" name="_token" value="{{csrf_token()}}">
 
 									<button type="submit" class="btn btn-info cart">
 									<i class="fa fa-shopping-cart"></i>

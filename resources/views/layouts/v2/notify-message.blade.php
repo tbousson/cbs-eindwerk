@@ -3,7 +3,7 @@
 
   @if(Session::has('success'))
      $.notify({
-      icon: "add_alert",
+      
       message: "{{Session::get('success')}}"},
        { //settings
      type:'success',

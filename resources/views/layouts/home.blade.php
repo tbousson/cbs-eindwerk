@@ -51,6 +51,8 @@
 
 <!--===============================================================================================-->
 	<script src="{{asset("js/main.js")}}"></script>
-
+@yield('js')
+<script src="{{asset("assets/js/plugins/bootstrap-notify.js")}}"></script>
+@include('layouts.v2.notify-message')
 </body>
 </html>

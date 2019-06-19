@@ -40,7 +40,7 @@ class Front extends Controller
         $authors = Author::orderBy('name','asc')->get();
         $series = Serie::orderBy('name','asc')->get();
         $publishers = Publisher::orderBy('name','asc')->get();
-        $comics = Comic::orderBy('publishyear','desc')->paginate(12);
+        $comics = Comic::with('photo')->orderBy('publishyear','desc')->paginate(12);
         return view('shop', compact('authors','comics','series','publishers','genres'));
     }
     public function comics()
