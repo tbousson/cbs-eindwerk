@@ -55,12 +55,19 @@
 											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
 											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 										</a>
-
+										
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											{{-- <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Add to Cart
-											</button>
+											</button> --}}
+											<form action="{{url('cart')}}" method="post">
+													<input type="hidden" name="comic_id" value="{{$comic->id}}">
+													<input type="hidden" name="_token" value="{{csrf_token()}}">
+				
+													<button type="submit" class="cart flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" >
+													<i class="fa fa-shopping-cart"></i> <span class="pl-1">Add to cart<span>
+												</button>
 										</div>
 									</div>
 								</div>
