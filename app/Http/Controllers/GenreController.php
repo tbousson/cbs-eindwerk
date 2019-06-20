@@ -10,19 +10,20 @@ class GenreController extends Controller
     public function index()
     {
         $genres = Genre::all();
-        return view('admin.genres.index', compact('genres'));
+        $genresTrashed = Genre::onlyTrashed()->get();
+        return view('admin.v2.genres.index', compact('genres','genresTrashed'));
     }
    
     public function create()
     {
         $genre = New Genre();
-        return view('admin.genres.create', compact('genre'));
+        return view('admin.v2.genres.create', compact('genre'));
     }
   
     public function store(Request $request)
     {
-        Genre::create($this->validateRequest());
-        return redirect()->route('genres.index')->with('success','Genre has been created!');
+        $genre = Genre::create($this->validateRequest());
+        return redirect()->route('genres.index')->with('success','Genre '.$genre->name.' has been created!');
     }
   
     public function show($id)
@@ -31,22 +32,31 @@ class GenreController extends Controller
     }
     public function edit(Genre $genre)
     {
-        return view('admin.genres.edit', compact('genre'));
+        return view('admin.v2.genres.edit', compact('genre'));
     }
  
-    public function update(Request $request, Genre $genre)
+    public function update(Request $request, $id)
     {
+        $genre = Genre::withTrashed()->findOrFail($id);
+        
+        
+        if($genre->deleted_at)
+        {
+            $genre->restore();
+            return redirect()->route('genres.index')->with('success','Genre '.$genre->name.' has been restored!');
+        }
         $this->validate($request, array(
             'name' => "required|min:2|unique:genres,name,$genre->id",
         ));
         $genre->update($request->all());
-        return redirect()->route('genres.index')->with('success','Genre has been updated!');
+        return redirect()->route('genres.index')->with('success','Genre '.$genre->name.' has been updated!');
     }
  
     public function destroy(Genre $genre)
     {
+        $deleting = $genre->name;
         $genre->delete();
-        return redirect()->route('genres.index')->with('error','Genre has been deleted!');
+        return redirect()->route('genres.index')->with('error','Genre '.$deleting.' has been deleted!');
     }
         private function validateRequest(){
            

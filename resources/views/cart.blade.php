@@ -134,7 +134,7 @@
 						</div>
 					</section>
 					<input id="nonce" name="payment_method_nonce" type="hidden" />
-					<a href="{{route('completed')}}" class="btn btn-primary" type="submit">Test Transaction</a>
+					<button class="btn btn-primary" type="submit">Complete Order</button>
 				</form>
 			</div>
 		</div>

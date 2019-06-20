@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,9 +49,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'name' => ['required', 'string', 'max:255'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => 'required|min:2',
+            'email' => "required|email|unique:users,email",
+            'password' => 'required|confirmed|alpha_dash',
+            'address' => 'string|required',
+            'postcode' => 'required|integer',
+            'city' => 'required',
+            'phone' => 'required',
+            'country' => 'required'
         ]);
     }
 
@@ -66,6 +74,11 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'address' => $data['address'],
+            'postcode' => $data['postcode'],
+            'city' => $data['city'],
+            'phone' => $data['phone'],
+            'country' => $data['country'],
             'password' => Hash::make($data['password']),
         ]);
     }

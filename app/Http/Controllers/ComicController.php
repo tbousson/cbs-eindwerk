@@ -11,6 +11,7 @@ use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Image;
+use Session;
 class ComicController extends Controller
 {
     /**
@@ -20,9 +21,10 @@ class ComicController extends Controller
      */
     public function index()
     {
-        $comics = Comic::with('Author','Serie','Publisher','Genres')->get();
+        $comics = Comic::with('publisher','photo')->get();
+        $comicsTrashed = Comic::onlyTrashed()->with('publisher','photo')->get();
         
-        return view ('admin.comics.index',compact('comics'));
+        return view ('admin.v2.comics.index',compact('comics','comicsTrashed'));
     }
 
     /**
@@ -37,7 +39,7 @@ class ComicController extends Controller
         $series = Serie::all();
         $publishers = Publisher::all();
         $genres = Genre::all();
-        return view('admin.comics.create', compact('comic','authors','series','publishers','genres'));
+        return view('admin.v2.comics.create', compact('comic','authors','series','publishers','genres'));
     }
 
     /**
@@ -83,16 +85,10 @@ class ComicController extends Controller
             $input['photo_id'] = $photo;
             
         }
-            
-            
-            
-           
-
-        
         $id = Comic::create($input)->id;
         $comic = Comic::findOrFail($id);
         $comic->genres()->attach($request->genres);
-        return redirect()->route('comics.index')->with('success','Comic has been created!');
+        return redirect()->route('comics.index')->with('success','Comic '.$comic->title.' has been created!');
     }
 
     /**
@@ -114,11 +110,12 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
+        
         $authors = Author::all();
         $series = Serie::all();
         $publishers = Publisher::all();
         $genres = Genre::all();
-        return view('admin.comics.edit', compact('comic','authors','series','publishers','genres'));
+        return view('admin.v2.comics.edit', compact('comic','authors','series','publishers','genres'));
     }
 
     /**
@@ -128,9 +125,35 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(Request $request, $id)
     {
-        
+        $comic = Comic::withTrashed()->findOrFail($id);
+        if($comic->deleted_at)
+        {
+            $message = [];
+            $publisher= Publisher::withTrashed()->findOrFail($comic->publisher_id);
+            $author= Author::withTrashed()->findOrFail($comic->author_id);
+            $serie= Serie::withTrashed()->findOrFail($comic->serie_id);
+            $pubrestore = $authrestore = $serrestore="";
+            if($publisher->deleted_at || $author->deleted_at || $serie->deleted_at){
+               if($publisher->deleted_at){
+                   $pubrestore='Publisher: ['.$publisher->name.']  ';
+                    $publisher->restore();   
+               }
+               if($author->deleted_at){
+                $authrestore='Author: ['.$author->name.']  ';
+                $author->restore();
+                }
+                if($serie->deleted_at){
+                    $serrestore='Serie: ['.$serie->name.']  ';
+                    $serie->restore();
+                }
+                $msg='Due to relations following have been restored...'.$pubrestore.$authrestore.$serrestore;
+             Session::flash("warning",$msg);
+            }
+            $comic->restore();
+            return redirect()->route('comics.index')->with('success','Comic '.$comic->title.' has been restored!');
+        }
         $this->validate($request, array(
             'title' => "required|min:5|unique:comics,title,$comic->id",
             'description'=>'required',
@@ -203,7 +226,7 @@ class ComicController extends Controller
             $comic->genres()->sync(array());
         }
         
-        return redirect()->route('comics.index')->with('succes','Comic has been updated!');
+        return redirect()->route('comics.index')->with('success','Comic '.$comic->title.' has been updated!');
     }
 
     /**
@@ -214,6 +237,8 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $deleting = $comic->name;
+        $comic->delete();
+        return redirect()->route('comics.index')->with('error','Comic '.$deleting.' has been deleted!');
     }
 }
